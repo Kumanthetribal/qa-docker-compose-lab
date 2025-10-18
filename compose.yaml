@@ -11,7 +11,7 @@ services:
     volumes:
       - db-data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U qa_user"]
+      test: ["CMD-SHELL", "pg_isready -U qa_user]
       interval: 5s
       timeout: 5s
       retries: 5
@@ -21,7 +21,7 @@ services:
     container_name: qa_redis_cache
 
   adminer:
-    image: adminer:1.0
+    image: adminer:latest
     container_name: qa_adminer_ui
     ports:
       - "8888:8080"
@@ -31,4 +31,3 @@ services:
 
 volumes:
   db-data:
-
