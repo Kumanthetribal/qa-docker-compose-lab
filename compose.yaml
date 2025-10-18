@@ -1,8 +1,4 @@
-version: '3.8'
-
- 
 services:
-  
   db:
     image: postgres:16-alpine
     container_name: qa_postgres_db
@@ -11,7 +7,7 @@ services:
       POSTGRES_PASSWORD: qa_pass
       POSTGRES_DB: qa_db
     ports:
-    - "5432:5432"
+      - "5432:5432"
     volumes:
       - db-data:/var/lib/postgresql/data
     healthcheck:
@@ -19,17 +15,20 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
-  cache: 
+
+  cache:
     image: redis:7-alpine
     container_name: qa_redis_cache
+
   adminer:
     image: adminer:1.0
     container_name: qa_adminer_ui
     ports:
-    - "8888:8080"
-      depends_on:
+      - "8888:8080"
+    depends_on:
       db:
         condition: service_healthy
-        volumes:
+
+volumes:
   db-data:
 
